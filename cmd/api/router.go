@@ -14,5 +14,7 @@ func initialiseRouter() *gin.Engine {
 
 	routers.InitialiseMoviesRoute(r)
 
+	routers.InitialiseKindsRoute(r)
+
 	return r
 }
