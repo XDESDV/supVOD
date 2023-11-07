@@ -8,8 +8,8 @@ import (
 	"supVOD/app/models"
 )
 
-/////////////////////////
-
+// ///////////////////////
+// Create User
 func CreateUser(user models.User) error {
 	var (
 		err error
@@ -31,6 +31,8 @@ func CreateUser(user models.User) error {
 	return err
 }
 
+// GetByID
+
 func GetByID(id string) (*models.User, error) {
 	var (
 		user models.User
@@ -38,8 +40,8 @@ func GetByID(id string) (*models.User, error) {
 		err  error
 	)
 
-	redisInstance := rediscon.GetRedisInstance() // récupération de la connexion ouverte
-	key := user.TableName() + "/" + id           // récupération de la clé
+	redisInstance := rediscon.GetRedisInstance()
+	key := user.TableName() + "/" + id
 
 	val, err = redisInstance.Get(key).Result()
 	if err == nil {
@@ -50,14 +52,15 @@ func GetByID(id string) (*models.User, error) {
 	return &user, nil
 }
 
+// UpdateUser
 func UpdateUser(user models.User) error {
 	var (
 		err error
 		val []byte
 	)
 
-	redisInstance := rediscon.GetRedisInstance() // clé dans mon table name qui définit la "connexion"
-	key := user.TableName() + "/" + user.ID      // récupération de la clé
+	redisInstance := rediscon.GetRedisInstance()
+	key := user.TableName() + "/" + user.ID
 
 	if val, err = json.Marshal(user); err == nil {
 		err = redisInstance.Set(key, string(val), 0).Err()
