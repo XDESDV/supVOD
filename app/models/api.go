@@ -19,3 +19,13 @@ type MetaResponse struct {
 	Offset     int    `json:"offSet"`
 	Count      int    `json:"count"`
 }
+
+type PaginationParams struct {
+	Page     int
+	PageSize int
+}
+
+type SearchParams struct {
+	Search string
+	Kinds  []Kind
+}

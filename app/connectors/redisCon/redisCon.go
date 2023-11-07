@@ -1,26 +1,29 @@
 package rediscon
 
 import (
+	"fmt"
 	"log"
+	"os"
 
 	"github.com/go-redis/redis"
 )
 
 var rdb *redis.Client
 
-func NewRedisClient() {
+func NewRedisClient() error {
 	log.Println("New redis client")
 	rdb = redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password set
-		DB:       0,  // use default DB
+		Addr:     fmt.Sprintf("%v:%v", os.Getenv("REDIS_HOST"), os.Getenv("REDIS_PORT")),
+		Password: "",
+		DB:       0,
 	})
 
 	err := rdb.Ping().Err()
-	if err == nil {
-		log.Fatalf("got nil, expected an error")
+	if err != nil {
+		return err
 	}
 
+	return nil
 }
 
 func GetRedisInstance() *redis.Client {
