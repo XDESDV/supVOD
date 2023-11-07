@@ -12,5 +12,7 @@ func initialiseRouter() *gin.Engine {
 
 	routers.InitialiseUsersRoute(r)
 
+	routers.InitialiseMoviesRoute(r)
+
 	return r
 }
