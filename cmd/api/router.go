@@ -18,5 +18,9 @@ func initialiseRouter() *gin.Engine {
 	r.POST("/movie", handlers.CreateMovie)
 	r.POST("/movie/:id", handlers.UpdateMovie)
 	r.GET("/movie/:id", handlers.GetMoviebyId)
+
+	r.GET("/kind", handlers.FindKind)
+	r.POST("/kind", handlers.CreateKind)
+	r.GET("/kind/:id", handlers.GetKindbyId)
 	return r
 }

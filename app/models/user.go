@@ -4,18 +4,16 @@ type User struct {
 	ID                string `json:"id,omitempty"`
 	Email             string `json:"email"`
 	UserPassword      string `json:"user_password"`
-	Gender            string `json:"gender"`
-	About             string `json:"about"`
-	Phone             string `json:"phone"`
-	Address           string `json:"address"`
-	AddressComplement string `json:"address_complement"`
-	PostalCode        string `json:"postal_code"`
-	City              string `json:"city"`
-	Country           string `json:"country"`
-	FirstName         string `json:"first_name"`
-	LastName          string `json:"last_name"`
-	IsStudent         bool   `json:"is_student"`
-	IsHost            bool   `json:"is_host"`
+	Gender            string `json:"gender,omitempty"`
+	About             string `json:"about,omitempty"`
+	Phone             string `json:"phone,omitempty"`
+	Address           string `json:"address,omitempty"`
+	AddressComplement string `json:"address_complement,omitempty"`
+	PostalCode        string `json:"postal_code,omitempty"`
+	City              string `json:"city,omitempty"`
+	Country           string `json:"country,omitempty"`
+	FirstName         string `json:"first_name,omitempty"`
+	LastName          string `json:"last_name,omitempty"`
 }
 
 type Users []User

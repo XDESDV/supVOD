@@ -3,7 +3,6 @@ package services
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"strings"
 	rediscon "supVOD/app/connectors/redisCon"
 	redisconnector "supVOD/app/connectors/redisCon"
@@ -145,7 +144,7 @@ func FindMovie(qm models.Query_Movie) (models.Movies, error) {
 				f_movies = append(f_movies, movie)
 			}
 		}
-		fmt.Println(f_movies)
+		movies = f_movies
 	}
 	return movies, nil
 }
