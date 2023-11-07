@@ -42,7 +42,7 @@ Base URI: http://localhost:${PORT}
 
 | Method | URI | Name | Query Optional Params |
 | --- | --- | --- | --- |
-| POST | /v1/historics | Create historics | |
+| POST | /v1/historics | Create historics and update historics (push on with same user and movie will update it's value) | |
 | GET | /v1/historics | List historics | user_id |
 | GET | /v1/movies/:historics_id | Get specific histric | |
 
