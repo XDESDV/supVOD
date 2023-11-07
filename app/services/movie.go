@@ -21,9 +21,7 @@ func GetMovieByID(id string) (*models.Movie, error) {
 	)
 	rdb := rediscon.GetRedisInstance()
 	key := m.TableName() + "/" + id
-	fmt.Println(key)
 	if val, err = rdb.Get(key).Result(); err != redis.Nil {
-		fmt.Println(val)
 		if err = json.Unmarshal([]byte(val), &m); err == nil {
 			return &m, err
 		} else {
@@ -70,7 +68,6 @@ func UpdateMovie(m models.Movie) error {
 			if m.Duration == 0 {
 				m.Duration = cm.Duration
 			}
-			fmt.Println("MOVIE : ", m)
 			if val, err = json.Marshal(m); err == nil {
 				err = rdb.Set(key, string(val), 0).Err()
 			}
@@ -117,14 +114,16 @@ func FindMovie(qm models.Query_Movie) (models.Movies, error) {
 					}
 					if len(qm.Kinds) != 0 {
 						for _, value := range qm.IDs {
-							if m.ID == value {
-								movies = append(movies, *m)
+							for _, kind := range m.Kinds {
+								if kind.Name == value {
+									movies = append(movies, *m)
+								}
 							}
 						}
 					}
 					if len(qm.Titles) != 0 {
-						for _, value := range qm.IDs {
-							if m.ID == value {
+						for _, value := range qm.Titles {
+							if m.Title == value {
 								movies = append(movies, *m)
 							}
 						}
@@ -134,6 +133,19 @@ func FindMovie(qm models.Query_Movie) (models.Movies, error) {
 				}
 			}
 		}
+		var f_movies models.Movies
+		for _, movie := range movies {
+			present := false
+			for i := 0; i < len(f_movies) && present == false; i++ {
+				if movie.ID == f_movies[i].ID {
+					present = true
+				}
+			}
+			if present == false {
+				f_movies = append(f_movies, movie)
+			}
+		}
+		fmt.Println(f_movies)
 	}
 	return movies, nil
 }
