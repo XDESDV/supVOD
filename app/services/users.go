@@ -10,8 +10,6 @@ import (
 
 /////////////////////////
 
-// CreateUser
-
 func CreateUser(user models.User) error {
 	var (
 		err error
@@ -33,9 +31,6 @@ func CreateUser(user models.User) error {
 	return err
 }
 
-// ///////////////////////
-// GetByID
-
 func GetByID(id string) (*models.User, error) {
 	var (
 		user models.User
@@ -55,9 +50,6 @@ func GetByID(id string) (*models.User, error) {
 	return &user, nil
 }
 
-// ///////////////////////
-
-// UpdateUser
 func UpdateUser(user models.User) error {
 	var (
 		err error
