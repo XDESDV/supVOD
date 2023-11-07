@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"os"
+	"supVOD/app/routers/historics"
 	"supVOD/app/routers/kinds"
 	"supVOD/app/routers/movies"
 	"supVOD/app/routers/users"
@@ -24,6 +25,7 @@ func (s *Server) Init() {
 	users.InitRouter(r)
 	movies.InitRouter(r)
 	kinds.InitRouter(r)
+	historics.InitRouter(r)
 
 	s.server = r
 }

@@ -15,7 +15,7 @@ func SuccessResponse(c *gin.Context, code int, data map[string]any) {
 const (
 	ErrorBadBody       string = "Invalid request body %s"
 	ErrorUserNotFound  string = "User not found"
-	ErrorMovieNotFound string = "User not found"
+	ErrorMovieNotFound string = "Movie not found"
 	ErrorKindNotFound  string = "Kind not found %s"
 	ErrorInternal      string = "Internal server error"
 )

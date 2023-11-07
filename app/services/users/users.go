@@ -24,7 +24,7 @@ func GetUserByID(id string) (*models.User, error) {
 	return &u, err
 }
 
-func CreateUser(u models.User) error {
+func CreateUser(u models.User) (models.User, error) {
 	var (
 		err error
 		val []byte
@@ -39,7 +39,7 @@ func CreateUser(u models.User) error {
 		err = rdb.Set(key, string(val), 0).Err()
 	}
 
-	return err
+	return u, err
 }
 
 func UpdateUser(u models.User) error {

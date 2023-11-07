@@ -34,7 +34,8 @@ func List() ([]models.Kind, error) {
 	rdb := redisconnector.GetRedisInstance()
 	var kinds []models.Kind
 
-	keys, err := rdb.Keys("kinds/*").Result()
+	tmp := models.Kind{}
+	keys, err := rdb.Keys(tmp.TableName() + "/*").Result()
 	if err != nil {
 		return kinds, err
 	}

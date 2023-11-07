@@ -16,15 +16,15 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
-	err = users.CreateUser(requestUser)
+	user, err := users.CreateUser(requestUser)
 	if err != nil {
 		handlers.ErrorResponse(c, 500, err.Error())
 		return
 	}
 
 	handlers.SuccessResponse(c, 201, map[string]interface{}{
-		"id":    requestUser.ID,
-		"email": requestUser.Email,
+		"id":    user.ID,
+		"email": user.Email,
 	})
 }
 

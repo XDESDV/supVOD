@@ -1,5 +1,7 @@
 package models
 
+type Users []User
+
 type User struct {
 	ID           string `json:"id,omitempty"`
 	Email        string `json:"email"`
@@ -11,8 +13,6 @@ type User struct {
 func (u *User) Validate() bool {
 	return u.Email != "" && u.UserPassword != "" && u.FirstName != "" && u.LastName != ""
 }
-
-type Users []User
 
 func (u User) TableName() string {
 	return "users"
