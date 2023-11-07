@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+	"supVOD/app/models"
 )
 
 // PrepareHeaders prépare les `headers` de la rèponse
@@ -16,12 +17,6 @@ func PrepareHeaders(w http.ResponseWriter, statusCode int) {
 	w.Header().Set("Accept", "application/json, application/xml")
 
 	w.WriteHeader(statusCode)
-}
-
-// ReturnResponse Renvoi le message bien formaté
-func ReturnResponse(w http.ResponseWriter, statusCode int, message interface{}) {
-	PrepareHeaders(w, statusCode)
-	json.NewEncoder(w).Encode(message)
 }
 
 // ReturnResponse Renvoi le message bien formaté

@@ -16,11 +16,6 @@ func NewRedisClient() {
 		DB:       0,  // use default DB
 	})
 
-	err := rdb.Ping().Err()
-	if err == nil {
-		log.Fatalf("got nil, expected an error")
-	}
-
 }
 
 func GetRedisInstance() *redis.Client {

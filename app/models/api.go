@@ -19,3 +19,60 @@ type MetaResponse struct {
 	Offset     int    `json:"offSet"`
 	Count      int    `json:"count"`
 }
+
+// MessageTypes est un tableau de message type retourné au Front
+// *	+ OK                  : *200*
+// *	+ Created             : *201*
+//   - NotModified         : *304*
+//
+// !	+ BadRequest          : *400*
+// !	+ Unauthorized        : *401*
+// !	+ PaymentRequired     : *402*
+// !	- Forbidden           : *403*
+// !	* NotFound            : *404*
+// !	+ MethodNotAllowed    : *405*
+// ! + Conflict	 	 	  :*409*
+// !	+ InternalServerError : *500*
+type MessageTypes struct {
+	OK                  string
+	Created             string
+	NotModified         string
+	BadRequest          string
+	Unauthorized        string
+	PaymentRequired     string
+	Forbidden           string
+	NotFound            string
+	Conflict            string
+	MethodNotAllowed    string
+	InternalServerError string
+}
+
+// BasicResponse est une réponse basic.
+//   - Status : *http status*
+//   - MessageType : *message typé pour le Front au format I18N*
+//   - Message : *message réponse*
+type BasicResponse struct {
+	Status      int    `json:"status"`
+	MessageType string `json:"messageType"`
+	Message     string `json:"message"`
+}
+
+// Success is a basic response of 2xx.
+func Success(status int, messageType string, msg string) *BasicResponse {
+	return &BasicResponse{Status: status, MessageType: messageType, Message: msg}
+}
+
+// Redirection is a basic response of 3xx.
+func Redirection(status int, messageType string, msg string) *BasicResponse {
+	return &BasicResponse{Status: status, MessageType: messageType, Message: msg}
+}
+
+// KnownError is a basic response of know errors.
+func KnownError(status int, messageType string, err error) *BasicResponse {
+	return &BasicResponse{Status: status, MessageType: messageType, Message: err.Error()}
+}
+
+// UnknownError is a basic response of unknown errors.
+func UnknownError(status int, err error) *BasicResponse {
+	return KnownError(status, "error.unknown", err)
+}

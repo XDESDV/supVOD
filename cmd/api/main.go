@@ -7,10 +7,8 @@ import (
 )
 
 func main() {
-
 	router := initialiseRouter()
 	rediscon.NewRedisClient()
 	log.Println("Listen & serve")
 	http.ListenAndServe(":8080", router)
-
 }

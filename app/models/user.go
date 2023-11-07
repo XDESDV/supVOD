@@ -22,5 +22,5 @@ type Users []User
 
 // TableName is name of table or path for redis db
 func (u User) TableName() string {
-	return "users"
+	return "user"
 }
