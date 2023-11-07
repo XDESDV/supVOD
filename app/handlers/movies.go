@@ -1,3 +1,4 @@
+// handlers/movie.go
 package handlers
 
 import (
@@ -8,15 +9,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CreateUser() {
-	// TODO
-
+func CreateMovie(c *gin.Context) {
 }
 
-func GetByID(c *gin.Context) {
+func GetMovieByID(c *gin.Context) {
 	id := c.Params.ByName("id")
 
-	user, err := services.GetByID(id)
+	movie, err := services.GetMovieByID(id)
 
 	// Gestion de l'erreur 500
 	if err != nil {
@@ -24,11 +23,10 @@ func GetByID(c *gin.Context) {
 	}
 
 	// Gestion de l'erreur 404
-	if user == nil {
+	if movie == nil {
 		c.JSON(http.StatusNotFound, nil)
 	}
-	log.Println(user)
-
+	log.Println(movie)
 	// Gestion OK
-	c.JSON(http.StatusOK, user)
+	c.JSON(http.StatusOK, movie)
 }
