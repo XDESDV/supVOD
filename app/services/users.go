@@ -59,7 +59,7 @@ func UpdateUser(user models.User) error {
 	redisInstance := rediscon.GetRedisInstance() // clé dans mon table name qui définit la "connexion"
 	key := user.TableName() + "/" + user.ID      // récupération de la clé
 
-	if val, err = json.Marshal(user); err == nil {
+	if val, err = json.Marshal(user); err == nil { //test
 		err = redisInstance.Set(key, string(val), 0).Err()
 	}
 	return err
