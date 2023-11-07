@@ -11,5 +11,5 @@ type Movie struct {
 type Movies []Movie
 
 func (m Movie) TableName() string {
-	return "movie"
+	return "movies"
 }

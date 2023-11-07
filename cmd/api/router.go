@@ -9,5 +9,6 @@ import (
 func initialiseRouter() *gin.Engine {
 	r := routers.InitialiseRouter()
 	routers.InitialiseUsersRoute(r)
+	routers.InitialiseMoviesRoute(r)
 	return r
 }

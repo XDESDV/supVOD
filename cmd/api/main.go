@@ -14,6 +14,7 @@ func main() {
 	router := initialiseRouter()
 
 	// addUser()
+	// addMovie()
 
 	log.Println("Server started on port 8080")
 
@@ -28,6 +29,17 @@ func addUser() {
 	u.UserPassword = "123456"
 
 	if err := services.CreateUser(u); err != nil {
+		log.Println(err)
+	}
+}
+
+func addMovie() {
+	var m models.Movie
+	m.Title = "The Lord of the Rings: The Fellowship of the Ring"
+	m.Description = "blablabla"
+	m.Duration = 180
+
+	if err := services.CreateMovie(m); err != nil {
 		log.Println(err)
 	}
 }
