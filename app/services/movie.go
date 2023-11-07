@@ -40,7 +40,23 @@ func CreateMovie(m models.Movie) error {
 	m.ID = functions.NewUUID()
 	key := m.TableName() + "/" + m.ID
 	if val, err = json.Marshal(m); err == nil {
-		err = rdb.Set(key, string(val), 0).Err()
+		exist := false
+		for i := 0; i < len(m.Kinds); i++ {
+			var qk models.Query_Kind
+			qk.Names = append(qk.Names, m.Kinds[i].Name)
+			if val, err := FindKind(qk); err == nil {
+				if len(val) != 0 {
+					exist = true
+				}
+			} else {
+				return err
+			}
+		}
+		if exist == true {
+			err = rdb.Set(key, string(val), 0).Err()
+		} else {
+			err = errors.New("kind(s) not exist")
+		}
 	}
 	return err
 }

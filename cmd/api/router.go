@@ -22,5 +22,8 @@ func initialiseRouter() *gin.Engine {
 	r.GET("/kind", handlers.FindKind)
 	r.POST("/kind", handlers.CreateKind)
 	r.GET("/kind/:id", handlers.GetKindbyId)
+
+	r.POST("/user", handlers.CreateUser)
+	r.POST("/user/:id", handlers.UpdateUser)
 	return r
 }
