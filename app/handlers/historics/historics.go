@@ -32,15 +32,15 @@ func CreateHistorics(c *gin.Context) {
 		return
 	}
 
-	err = historics.Create(&requestHistorics)
-	if err != nil {
-		handlers.ErrorResponse(c, 500, err.Error())
-		return
-	}
-
 	user, movie, err := getUserAndMovie(requestHistorics)
 	if err != nil {
 		handlers.ErrorResponse(c, 400, err.Error())
+		return
+	}
+
+	err = historics.Create(&requestHistorics)
+	if err != nil {
+		handlers.ErrorResponse(c, 500, err.Error())
 		return
 	}
 
